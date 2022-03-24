@@ -22,7 +22,7 @@ async def on_message(message):
 
     if message.content == '!help':  # help command
 
-        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags up to 2 in the following format: !danbooru tag tag \n!e621 - gets an image from e621 with the specified tags (can do more than 2) in the following format: !e621 tag tag \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
+        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags up to 2 in the following format: !danbooru tag tag \n!e621 - gets an image from e621 with the specified tags (can do more than 2) in the following format: !e621 tag tag\n!b64 - base64 decoder \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
         await message.channel.send(response)
 
     if message.content == 'ping!': #test
@@ -88,7 +88,8 @@ async def on_message(message):
         encoded = message.content.split(" ")
         buildResponse = ""
         for b64String in encoded[1:]:
-            buildResponse += base64.base64decode(b64String)
+            buildResponse += str(base64.b64decode(b64String))
+            buildResponse = buildResponse[2:len(buildResponse)-1]
         await message.channel.send(buildResponse)
         
 
