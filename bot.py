@@ -80,7 +80,7 @@ async def on_message(message):
 
 
 
-    if message.content.startswith("!e621"): #gets a post with the indicated tags from e621 ( format: !getpost tag tag )
+    if message.content.startswith("!e621"): #gets a post with the indicated tags from e621 ( format: !getpost tag tag... )
         headers = {"User-Agent": "Y'shtola Lewd Bot (by qazwsxrfv on e621)"}
         inter_url = 'https://e621.net/posts/random.json'
 
@@ -92,7 +92,7 @@ async def on_message(message):
         for tag in x:
             if tag != '!e621':
                 inter_url = inter_url + tag + "+"
-        print(inter_url)
+
         j = requests.get(inter_url, headers=headers).json()
 
 
