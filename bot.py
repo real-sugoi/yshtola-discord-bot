@@ -4,6 +4,7 @@ import requests
 import discord
 from dotenv import load_dotenv
 import json
+import base64
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -83,7 +84,13 @@ async def on_message(message):
 
         await message.channel.send(response)
 
-
+    if message.content.startswith("!b64"): #b64 decoder
+        encoded = message.content.split(" ")
+        buildResponse = ""
+        for b64String in encoded[1:]:
+            buildResponse += base64.base64decode(b64String)
+        await message.channel.send(buildResponse)
+        
 
     if message.content.startswith("!e621"): #gets a post with the indicated tags from e621 ( format: !e621 tag tag... )
         headers = {"User-Agent": "Y'shtola Lewd Bot"} #replace this if your bot name is different
