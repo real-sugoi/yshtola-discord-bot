@@ -21,7 +21,7 @@ async def on_message(message):
 
     if message.content == '!help':  # help command
 
-        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags up to 2 in the following format: !danbooru tag tag \n!e621 - gets an image from e621 with the specifiied tags (can do more than 2) in the following format: !e621 tag tag \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
+        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags up to 2 in the following format: !danbooru tag tag \n!e621 - gets an image from e621 with the specified tags (can do more than 2) in the following format: !e621 tag tag \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
         await message.channel.send(response)
 
     if message.content == 'ping!': #test
