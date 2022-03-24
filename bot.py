@@ -19,6 +19,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content == '!help':  # help command
+
+        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags up to 2 in the following format: !danbooru tag tag \n!e621 - gets an image from e621 with the specifiied tags (can do more than 2) in the following format: !e621 tag tag \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
+        await message.channel.send(response)
+
     if message.content == 'ping!': #test
         response = 'pong!'
         await message.channel.send(response)
@@ -55,7 +60,7 @@ async def on_message(message):
         response = "There are " + str(count) + " Y'shtola posts on Danbooru"
         await message.channel.send(response)
 
-    if message.content.startswith("!getpost"): #gets a post with the indicated tags ( up to 2 tags, format: !getpost tag tag )
+    if message.content.startswith("!danbooru"): #gets a post with the indicated tags ( up to 2 tags, format: !danbooru tag tag )
 
         inter_url = url + "/posts/random.json"
 
@@ -65,7 +70,7 @@ async def on_message(message):
 
 
         for tag in x:
-            if tag != '!getpost':
+            if tag != '!danbooru':
                 inter_url = inter_url + tag + "+"
 
         j = requests.get(inter_url).json()
@@ -80,8 +85,8 @@ async def on_message(message):
 
 
 
-    if message.content.startswith("!e621"): #gets a post with the indicated tags from e621 ( format: !getpost tag tag... )
-        headers = {"User-Agent": "Y'shtola Lewd Bot (by qazwsxrfv on e621)"}
+    if message.content.startswith("!e621"): #gets a post with the indicated tags from e621 ( format: !e621 tag tag... )
+        headers = {"User-Agent": "Y'shtola Lewd Bot"} #replace this if your bot name is different
         inter_url = 'https://e621.net/posts/random.json'
 
 
@@ -101,6 +106,8 @@ async def on_message(message):
 
 
         await message.channel.send(response)
+
+
 
 
 
