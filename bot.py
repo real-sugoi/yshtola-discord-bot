@@ -22,7 +22,7 @@ async def on_message(message):
 
     if message.content == '!help':  # help command
 
-        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags up to 2 in the following format: !danbooru tag tag \n!e621 - gets an image from e621 with the specified tags (can do more than 2) in the following format: !e621 tag tag\n!b64 - base64 decoder \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
+        response = "!help - you just used this command \n!mommy - gets an image of y'shtola from danbooru \n!megamommy - gets an image of y'shtola from danbooru drawn by club3 \n!mommycount - lists the number of y'shtola posts on danbooru \n!danbooru - gets an image from danbooru with the specified tags in the following format: !danbooru tag tag... \n!e621 - gets an image from e621 with the specified tags (can do more than 2) in the following format: !e621 tag tag...\n!b64 - base64 decoder \n \nTroubleshoot - if the bot doesn't send an image then it likely came across image that requires a login to view. I will not be fixing this"
         await message.channel.send(response)
 
     if message.content == 'ping!': #test
@@ -61,7 +61,7 @@ async def on_message(message):
         response = "There are " + str(count) + " Y'shtola posts on Danbooru"
         await message.channel.send(response)
 
-    if message.content.startswith("!danbooru"): #gets a post with the indicated tags ( up to 2 tags, format: !danbooru tag tag )
+    if message.content.startswith("!danbooru"): #gets a post with the indicated tags
 
         inter_url = url + "/posts/random.json"
 
@@ -76,11 +76,7 @@ async def on_message(message):
 
         j = requests.get(inter_url).json()
 
-
-        if len(x) > 3:
-            response = "Can only use up to 2 tags"
-        else:
-            response = j["file_url"]
+        response = j["file_url"]
 
         await message.channel.send(response)
 
